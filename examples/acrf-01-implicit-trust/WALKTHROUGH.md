@@ -48,7 +48,7 @@ The booking service happily processes it. Because from its perspective — that'
 
 ### Narration while it runs (60 sec)
 
-"At startup, each agent generates an Ed25519 keypair. The public key is published in an Agent Card — a small JSON document that declares the agent's identity, capabilities, and public key.
+At startup, each agent generates an Ed25519 keypair. The public key is published in an Agent Card — a small JSON document that declares the agent's identity, capabilities, and public key.
 
 When the orchestrator sends a booking request, it canonicalizes the message and signs it with its private key. The BookingExecutor has the orchestrator's Agent Card in its trust store. It uses the public key to verify the signature before processing anything.
 
@@ -82,4 +82,3 @@ If you have one takeaway: treat the sender field on any inter-agent message as u
 
 Repo is at github.com/kannasekar-alt/acrf. The full framework documents nine more risks like this one.
 
-Thanks for watching."
