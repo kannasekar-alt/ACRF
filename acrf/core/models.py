@@ -325,6 +325,23 @@ class AssessmentResult:
             self.dimension_results
         )
 
+    def weighted_score(self) -> float:
+        """AIVSS-weighted mean of awarded maturity levels (scale 0–4).
+
+        Each dimension's static AIVSS score is used as its weight.  A system
+        that scores well on higher-severity dimensions earns a higher weighted
+        score than one achieving the same unweighted mean through lower-severity
+        dimensions.  Uses framework metadata weights only; no system-specific
+        adjustments.
+        """
+        if not self.dimension_results:
+            return 0.0
+        total_weight = sum(r.dimension.aivss_score for r in self.dimension_results)
+        return (
+            sum(r.awarded_level.value * r.dimension.aivss_score for r in self.dimension_results)
+            / total_weight
+        )
+
     def summary(self) -> str:
         lines = [f"ACRF Assessment  - {self.system_name}"]
         lines.append(f"Methodology v{self.acrf_version}")
@@ -339,5 +356,6 @@ class AssessmentResult:
                 f"claimed {r.claimed_level.value}  awarded {r.awarded_level.value}"
             )
         lines.append("")
-        lines.append(f"Overall mean: {self.overall_score():.2f}")
+        lines.append(f"Overall mean:   {self.overall_score():.2f}")
+        lines.append(f"Weighted score: {self.weighted_score():.2f}")
         return "\n".join(lines)

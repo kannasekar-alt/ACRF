@@ -16,6 +16,7 @@ def to_markdown(result: AssessmentResult) -> str:
     if result.assessment_date:
         lines.append(f"- **Assessment date:** {result.assessment_date}")
     lines.append(f"- **Overall mean level:** {result.overall_score():.2f}")
+    lines.append(f"- **Weighted score (AIVSS):** {result.weighted_score():.2f}")
     lines.append("")
 
     lines.append("## Risk dimension scores")
@@ -84,6 +85,7 @@ def to_json(result: AssessmentResult) -> str:
         "acrf_version": result.acrf_version,
         "assessment_date": result.assessment_date,
         "overall_score": result.overall_score(),
+        "weighted_score": result.weighted_score(),
         "dimension_results": [
             {
                 "acrf_id": r.dimension.acrf_id,
