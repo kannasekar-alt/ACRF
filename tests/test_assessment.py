@@ -166,7 +166,7 @@ def test_backlog_prioritizes_higher_criticality_dimension():
     ]
     result = Assessment(_minimal_system(channels=channels)).run()
 
-    # Safety Controls Not Self-Protecting (AIVSS 9.5 + high-blast bonus)
+    # Safety Controls Not Self-Protecting (AIVSS 9.8 + high-blast bonus)
     # should be near the top of the backlog.
     assert result.remediation_backlog
     safety_positions = [

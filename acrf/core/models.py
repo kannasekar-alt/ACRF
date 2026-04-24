@@ -79,7 +79,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-01",
         "owasp_agentic": "ASI07 Insecure Inter-Agent",
         "owasp_mcp": "MCP07 Insufficient Auth",
-        "aivss_score": 9.2,
+        "aivss_score": 9.4,
         "defense_pattern": "Warrant delegation, mTLS, signed Agent Cards",
     },
     RiskDimension.NO_STANDARD_IDENTITY: {
@@ -88,7 +88,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-02",
         "owasp_agentic": "ASI03 Identity & Privilege",
         "owasp_mcp": "MCP01 Token Mismanagement",
-        "aivss_score": 9.0,
+        "aivss_score": 8.2,
         "defense_pattern": "Agent Naming Service, OAuth 2.1, scoped tokens",
     },
     RiskDimension.MCP_SERVER_SPRAWL: {
@@ -97,7 +97,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-03",
         "owasp_agentic": "ASI04 Supply Chain Vulns",
         "owasp_mcp": "MCP09 Shadow MCP Servers",
-        "aivss_score": 8.4,
+        "aivss_score": 7.2,
         "defense_pattern": "Agent inventory, mcp-scan, AIBOM",
     },
     RiskDimension.MEMORY_POISONING: {
@@ -106,7 +106,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-04",
         "owasp_agentic": "ASI06 Memory & Context",
         "owasp_mcp": "MCP06 Intent Flow Subversion",
-        "aivss_score": 9.1,
+        "aivss_score": 8.6,
         "defense_pattern": "Namespace isolation, contextual integrity",
     },
     RiskDimension.SUPPLY_CHAIN_TOXICITY: {
@@ -115,7 +115,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-05",
         "owasp_agentic": "ASI04 Supply Chain Vulns",
         "owasp_mcp": "MCP03, MCP04 Tool Poisoning",
-        "aivss_score": 9.3,
+        "aivss_score": 9.2,
         "defense_pattern": "Lock dependency versions, skill-scanner",
     },
     RiskDimension.CONFIG_EXECUTION_VECTORS: {
@@ -124,7 +124,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-06",
         "owasp_agentic": "ASI05 Unexpected Code Exec",
         "owasp_mcp": "MCP05 Command Injection",
-        "aivss_score": 8.7,
+        "aivss_score": 7.8,
         "defense_pattern": "Sandboxing, read-only configs",
     },
     RiskDimension.MULTI_TURN_DEFENSE_COLLAPSE: {
@@ -133,7 +133,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-07",
         "owasp_agentic": "ASI01 Goal Hijack",
         "owasp_mcp": "MCP06 Intent Flow Subversion",
-        "aivss_score": 9.4,
+        "aivss_score": 9.6,
         "defense_pattern": "Deterministic intermediaries, session limits",
     },
     RiskDimension.CASCADING_FAILURE_BLINDNESS: {
@@ -142,7 +142,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-08",
         "owasp_agentic": "ASI08 Cascading Failures",
         "owasp_mcp": "MCP08 Lack of Audit",
-        "aivss_score": 8.5,
+        "aivss_score": 7.4,
         "defense_pattern": "Circuit breakers, agent-aware SIEM",
     },
     RiskDimension.SEMANTIC_BYPASS: {
@@ -151,7 +151,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-09",
         "owasp_agentic": "ASI09 Human-Agent Trust",
         "owasp_mcp": "MCP10 Context Over-Sharing",
-        "aivss_score": 8.6,
+        "aivss_score": 8.0,
         "defense_pattern": "Guardian agents, intent validation",
     },
     RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING: {
@@ -160,7 +160,7 @@ _DIMENSION_METADATA: dict[RiskDimension, dict] = {
         "acrf_id": "ACRF-10",
         "owasp_agentic": "ASI10 Rogue Agents",
         "owasp_mcp": "MCP02 Privilege Escalation",
-        "aivss_score": 9.5,
+        "aivss_score": 9.8,
         "defense_pattern": "Least agency, immutable guardrails",
     },
 }

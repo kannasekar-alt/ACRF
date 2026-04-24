@@ -28,18 +28,17 @@ It is designed to be:
 
 | # | Risk Dimension | OWASP Agentic | OWASP MCP | AIVSS | Defense Pattern |
 |---|----------------|---------------|-----------|-------|-----------------|
-| 01 | **Implicit Trust Between Agents** | ASI07 Insecure Inter-Agent | MCP07 Insufficient Auth | Critical (9.2) | Warrant delegation, mTLS, signed Agent Cards |
-| 02 | **No Standard Agent Identity** | ASI03 Identity & Privilege | MCP01 Token Mismanagement | Critical (9.0) | Agent Naming Service, OAuth 2.1, scoped tokens |
-| 03 | **MCP Server Sprawl** | ASI04 Supply Chain Vulns | MCP09 Shadow MCP Servers | High (8.4) | Agent inventory, mcp-scan, AIBOM |
-| 04 | **Memory Poisoning** | ASI06 Memory & Context | MCP06 Intent Flow Subversion | Critical (9.1) | Namespace isolation, contextual integrity |
-| 05 | **Supply Chain Toxicity** | ASI04 Supply Chain Vulns | MCP03, MCP04 Tool Poisoning | Critical (9.3) | Lock dependency versions, skill-scanner |
-| 06 | **Config Files = Execution Vectors** | ASI05 Unexpected Code Exec | MCP05 Command Injection | High (8.7) | Sandboxing, read-only configs |
-| 07 | **Multi-Turn Defense Collapse** | ASI01 Goal Hijack | MCP06 Intent Flow Subversion | Critical (9.4) | Deterministic intermediaries, session limits |
-| 08 | **Cascading Failure Blindness** | ASI08 Cascading Failures | MCP08 Lack of Audit | High (8.5) | Circuit breakers, agent-aware SIEM |
-| 09 | **Semantic Bypass** | ASI09 Human-Agent Trust | MCP10 Context Over-Sharing | High (8.6) | Guardian agents, intent validation |
-| 10 | **Safety Controls Not Self-Protecting** | ASI10 Rogue Agents | MCP02 Privilege Escalation | Critical (9.5) | Least agency, immutable guardrails |
+| 01 | **Implicit Trust Between Agents** | ASI07 Insecure Inter-Agent | MCP07 Insufficient Auth | Critical (9.4) | Warrant delegation, mTLS, signed Agent Cards |
+| 02 | **No Standard Agent Identity** | ASI03 Identity & Privilege | MCP01 Token Mismanagement | High (8.2) | Agent Naming Service, OAuth 2.1, scoped tokens |
+| 03 | **MCP Server Sprawl** | ASI04 Supply Chain Vulns | MCP09 Shadow MCP Servers | High (7.2) | Agent inventory, mcp-scan, AIBOM |
+| 04 | **Memory Poisoning** | ASI06 Memory & Context | MCP06 Intent Flow Subversion | High (8.6) | Namespace isolation, contextual integrity |
+| 05 | **Supply Chain Toxicity** | ASI04 Supply Chain Vulns | MCP03, MCP04 Tool Poisoning | Critical (9.2) | Lock dependency versions, skill-scanner |
+| 06 | **Config Files = Execution Vectors** | ASI05 Unexpected Code Exec | MCP05 Command Injection | High (7.8) | Sandboxing, read-only configs |
+| 07 | **Multi-Turn Defense Collapse** | ASI01 Goal Hijack | MCP06 Intent Flow Subversion | Critical (9.6) | Deterministic intermediaries, session limits |
+| 08 | **Cascading Failure Blindness** | ASI08 Cascading Failures | MCP08 Lack of Audit | High (7.4) | Circuit breakers, agent-aware SIEM |
+| 09 | **Semantic Bypass** | ASI09 Human-Agent Trust | MCP10 Context Over-Sharing | High (8.0) | Guardian agents, intent validation |
+| 10 | **Safety Controls Not Self-Protecting** | ASI10 Rogue Agents | MCP02 Privilege Escalation | Critical (9.8) | Least agency, immutable guardrails |
 
-AIVSS scores reflect worst-case deployment, autonomous agents with full tool access and no guardrails in place. Your actual severity will vary based on your architecture and controls.
 See [`docs/methodology.md`](docs/methodology.md) for the full rubric, evidence requirements, and maturity scales.
 
 ## Quickstart
