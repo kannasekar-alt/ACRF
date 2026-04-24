@@ -1,9 +1,9 @@
 # ============================================================================
 # ACRF Assessment Template: Safety Controls Not Self-Protecting (ACRF-10)
 # ============================================================================
-# Severity: Critical (AIVSS 9.8) — Highest in the framework
-# OWASP Refs: Agentic Top 10 — A09 (Lack of Guardrails on Agent Actions)
-#             MCP Top 10 — M09 (Lack of Monitoring & Logging)
+# Severity: Critical (AIVSS 9.8) - Highest in the framework
+# OWASP Refs: Agentic Top 10 - A09 (Lack of Guardrails on Agent Actions)
+#             MCP Top 10 - M09 (Lack of Monitoring & Logging)
 # ============================================================================
 # This template models a system where the safety and compliance layer itself
 # can be bypassed, disabled, or manipulated by the agents it is meant to
@@ -21,7 +21,7 @@ system:
     agents for deployment, database operations, and monitoring. A guardrail
     agent enforces change-management policies (approval gates, blast-radius
     limits, rollback requirements). However, the guardrail agent runs in the
-    same trust domain as the operational agents — meaning a compromised or
+    same trust domain as the operational agents - meaning a compromised or
     manipulated deployment agent could instruct the guardrail agent to
     relax its policies, disable audit logging, or approve its own changes.
   owner: "acrf/assessment-templates"
@@ -144,16 +144,16 @@ channels:
 # Evidence: Are the safety controls themselves protected?
 #
 # Maturity Levels:
-#   0 — None: Guardrail agent is callable and modifiable by the agents it
+#   0 - None: Guardrail agent is callable and modifiable by the agents it
 #        governs. No integrity protection on policy definitions.
-#   1 — Initial: Guardrail config is read-only at runtime; policy changes
+#   1 - Initial: Guardrail config is read-only at runtime; policy changes
 #        require a separate deployment pipeline.
-#   2 — Defined: Guardrail agent runs in an isolated trust domain;
+#   2 - Defined: Guardrail agent runs in an isolated trust domain;
 #        operational agents cannot invoke policy-modification actions.
-#   3 — Managed: Tamper detection on guardrail state; automated alerts
+#   3 - Managed: Tamper detection on guardrail state; automated alerts
 #        when policy drift is detected; audit log is append-only and
 #        externally attested.
-#   4 — Optimized: Formal separation of control and data planes;
+#   4 - Optimized: Formal separation of control and data planes;
 #        guardrail integrity verified by an independent out-of-band
 #        system; red-team exercises specifically target guardrail bypass.
 #
@@ -181,7 +181,7 @@ evidence:
     #   artifacts:
     #     - control_objective: SP-1
     #       artifact: "iac/guardrail-deploy-pipeline.yaml"
-    #       description: "GitOps pipeline — only merged PRs can update
+    #       description: "GitOps pipeline - only merged PRs can update
     #         guardrail policies; runtime agents have read-only access."
     #     - control_objective: SP-2
     #       artifact: "infra/network-policies.yaml"

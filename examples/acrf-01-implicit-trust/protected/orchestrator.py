@@ -1,4 +1,4 @@
-"""TravelOrchestrator Agent — PROTECTED VERSION (signs every message)."""
+"""TravelOrchestrator Agent - PROTECTED VERSION (signs every message)."""
 import base64
 import hashlib
 import json
@@ -52,7 +52,7 @@ def send_booking_request(user, route, amount, card_owner, private_key):
 
 def run_legitimate_scenario(private_key):
     print("=" * 70)
-    print(" SCENARIO 1: Legitimate booking — signed with real private key")
+    print(" SCENARIO 1: Legitimate booking - signed with real private key")
     print("=" * 70)
     print("Alice wants to fly from SFO to JFK.")
     print("TravelOrchestrator signs the request with its Ed25519 private key.")

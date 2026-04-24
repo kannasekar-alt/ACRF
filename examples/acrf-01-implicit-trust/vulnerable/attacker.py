@@ -1,4 +1,4 @@
-"""Attacker — spoofs TravelOrchestrator identity (ACRF-01 demo)"""
+"""Attacker - spoofs TravelOrchestrator identity (ACRF-01 demo)"""
 import time
 
 import requests

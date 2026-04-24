@@ -88,7 +88,7 @@ cp acrf/assessments/multi-turn-defense-collapse.yaml my-system.yaml
 cp acrf/assessments/safety-controls-not-self-protecting.yaml my-system.yaml
 ```
 
-Or start from scratch — any YAML conforming to `specs/system-description.schema.json` works.
+Or start from scratch - any YAML conforming to `specs/system-description.schema.json` works.
 
 ### Step 2: Describe your agents
 
@@ -119,7 +119,7 @@ Roles: `orchestrator`, `tool_user`, `service_agent`, `third_party`.
 
 ### Step 3: Map your channels
 
-Define how agents communicate. Pay attention to trust boundary crossings and blast radius — these drive the severity weighting:
+Define how agents communicate. Pay attention to trust boundary crossings and blast radius - these drive the severity weighting:
 
 ```yaml
 channels:
@@ -156,7 +156,7 @@ evidence:
         description: "OPA policy restricting which agents can invoke which actions."
 ```
 
-Leave out dimensions you're not ready to assess — the tool will score them as Level 0.
+Leave out dimensions you're not ready to assess - the tool will score them as Level 0.
 
 ### Step 5: Validate and run
 
@@ -164,7 +164,7 @@ Leave out dimensions you're not ready to assess — the tool will score them as 
 # Check your YAML is structurally valid
 acrf validate my-system.yaml
 
-# Run the assessment — see a summary with gaps
+# Run the assessment - see a summary with gaps
 acrf assess my-system.yaml
 
 # Generate a full report for your security review
@@ -173,7 +173,7 @@ acrf report my-system.yaml --format markdown -o my-system-report.md
 
 ### What you get back
 
-The assessment engine checks your claimed level against the evidence you provided. For each of the 10 risk dimensions, it awards the highest maturity level whose control objectives all have supporting artifacts — and tells you exactly what's missing.
+The assessment engine checks your claimed level against the evidence you provided. For each of the 10 risk dimensions, it awards the highest maturity level whose control objectives all have supporting artifacts - and tells you exactly what's missing.
 
 A full report includes per-dimension findings, OWASP cross-references, defense pattern recommendations, evidence gaps, and a prioritized remediation backlog weighted by AIVSS severity. See `examples/sample-assessment-report.md` for a complete example.
 
@@ -188,7 +188,7 @@ result = Assessment(system).run()
 for dr in result.dimension_results:
     if dr.awarded_level < dr.claimed_level:
         print(f"{dr.dimension.display_name}: claimed {dr.claimed_level}, "
-              f"awarded {dr.awarded_level} — gaps: {dr.gaps}")
+              f"awarded {dr.awarded_level} - gaps: {dr.gaps}")
 ```
 
 ## Why ACRF exists

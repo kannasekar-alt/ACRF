@@ -2,11 +2,11 @@
 # ACRF Assessment Template: Supply Chain Toxicity (ACRF-05)
 # ============================================================================
 # Severity: Critical (AIVSS 9.2)
-# OWASP Refs: Agentic Top 10 — A05 (Insecure Agent-to-Agent Communication)
-#             MCP Top 10 — M03 (Tool Tampering / Server Spoofing)
+# OWASP Refs: Agentic Top 10 - A05 (Insecure Agent-to-Agent Communication)
+#             MCP Top 10 - M03 (Tool Tampering / Server Spoofing)
 # ============================================================================
 # This template models an agent system that relies on external MCP servers,
-# third-party tool registries, and community plugins — the modern equivalent
+# third-party tool registries, and community plugins - the modern equivalent
 # of npm/PyPI supply chain risk, but for agent tooling.
 # ============================================================================
 
@@ -123,13 +123,13 @@ channels:
 # Evidence: What supply chain controls exist today?
 #
 # Maturity Levels:
-#   0 — None: Tools installed from any source with no verification.
-#   1 — Initial: Pinned tool versions; basic allowlist of approved sources.
-#   2 — Defined: Signature verification on tool packages; SBOM generated
+#   0 - None: Tools installed from any source with no verification.
+#   1 - Initial: Pinned tool versions; basic allowlist of approved sources.
+#   2 - Defined: Signature verification on tool packages; SBOM generated
 #        for all MCP server dependencies.
-#   3 — Managed: Automated scanning of tool definitions for injection
+#   3 - Managed: Automated scanning of tool definitions for injection
 #        patterns; runtime tool behavior monitoring.
-#   4 — Optimized: Reproducible tool builds; supply chain attestation
+#   4 - Optimized: Reproducible tool builds; supply chain attestation
 #        (SLSA Level 3+); continuous drift detection on tool definitions.
 #
 # Control Objectives:

@@ -2,8 +2,8 @@
 # ACRF Assessment Template: Multi-Turn Defense Collapse (ACRF-07)
 # ============================================================================
 # Severity: Critical (AIVSS 9.6)
-# OWASP Refs: Agentic Top 10 — A02 (Agent Prompt Injection / Manipulation)
-#             MCP Top 10 — M06 (Indirect Prompt Injection via Tool Results)
+# OWASP Refs: Agentic Top 10 - A02 (Agent Prompt Injection / Manipulation)
+#             MCP Top 10 - M06 (Indirect Prompt Injection via Tool Results)
 # ============================================================================
 # This template models a conversational agent system where safety guardrails
 # are applied per-turn but erode across a multi-turn interaction. An attacker
@@ -20,8 +20,8 @@ system:
     strategies and an execution agent to place trades. Safety guardrails
     (risk limits, compliance checks) are evaluated per-turn. Over a multi-turn
     session, an attacker can incrementally expand the scope of permitted
-    actions — first asking about small trades, then gradually escalating to
-    unauthorized portfolio changes — because the guardrail context resets
+    actions - first asking about small trades, then gradually escalating to
+    unauthorized portfolio changes - because the guardrail context resets
     each turn while the agent's working memory retains the shifted context.
   owner: "acrf/assessment-templates"
   assessment_date: "2026-04-24"
@@ -109,13 +109,13 @@ channels:
 # Evidence: What multi-turn defense controls exist today?
 #
 # Maturity Levels:
-#   0 — None: Safety checks are stateless; no cross-turn context tracking.
-#   1 — Initial: Session-level audit log; basic turn counter limits.
-#   2 — Defined: Cumulative action tracking across turns; escalation
+#   0 - None: Safety checks are stateless; no cross-turn context tracking.
+#   1 - Initial: Session-level audit log; basic turn counter limits.
+#   2 - Defined: Cumulative action tracking across turns; escalation
 #        thresholds that account for session history.
-#   3 — Managed: Semantic drift detection comparing current-turn intent
+#   3 - Managed: Semantic drift detection comparing current-turn intent
 #        against session baseline; automated session termination on drift.
-#   4 — Optimized: Adversarial red-team testing of multi-turn flows;
+#   4 - Optimized: Adversarial red-team testing of multi-turn flows;
 #        formal verification of guardrail persistence across turn boundaries.
 #
 # Control Objectives:

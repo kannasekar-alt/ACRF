@@ -1,4 +1,4 @@
-"""BookingExecutor Agent — VULNERABLE VERSION (ACRF-01 demo)"""
+"""BookingExecutor Agent - VULNERABLE VERSION (ACRF-01 demo)"""
 import time
 
 from flask import Flask, jsonify, request
