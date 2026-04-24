@@ -78,3 +78,15 @@ def test_render_dispatches_on_format(result):
 def test_render_unknown_format_raises(result):
     with pytest.raises(ValueError, match="Unknown format"):
         render(result, format="xml")  # type: ignore[arg-type]
+
+
+def test_markdown_includes_weighted_score(result):
+    md = to_markdown(result)
+    assert "Weighted score (AIVSS):" in md
+
+
+def test_json_includes_weighted_score(result):
+    payload = json.loads(to_json(result))
+    assert "weighted_score" in payload
+    assert isinstance(payload["weighted_score"], float)
+    assert 0.0 <= payload["weighted_score"] <= 4.0

@@ -9,6 +9,7 @@ from acrf.core.loader import load_system
 from acrf.core.models import (
     Action,
     Agent,
+    AssessmentResult,
     BlastRadius,
     Channel,
     Evidence,
@@ -228,3 +229,78 @@ def test_backward_compat_domain_results_alias():
     assert result.domain_results is result.dimension_results
     for r in result.domain_results:
         assert r.domain is r.dimension
+
+
+# ---------------------------------------------------------------------------
+# weighted_score tests
+# ---------------------------------------------------------------------------
+
+def test_weighted_score_zero_with_empty_dimension_results():
+    # Directly construct AssessmentResult with no dimension entries to exercise
+    # the guard clause (not via Assessment.run() which always yields 10 results).
+    result = AssessmentResult(
+        system_name="empty",
+        acrf_version="0.1",
+        assessment_date=None,
+        dimension_results=[],
+        remediation_backlog=[],
+    )
+    assert result.weighted_score() == 0.0
+
+
+def test_weighted_score_zero_without_evidence():
+    result = Assessment(_minimal_system()).run()
+    assert result.weighted_score() == 0.0
+
+
+def test_weighted_score_equals_overall_when_all_levels_equal():
+    # When every dimension is awarded the same level the AIVSS-weighted mean
+    # equals the unweighted mean regardless of individual weights.
+    all_level_1: dict[RiskDimension, Evidence] = {
+        dim: Evidence(
+            claimed_level=MaturityLevel.INITIAL,
+            artifacts=[EvidenceArtifact(control_objective=f"{dim.short_code}-1", artifact="x")],
+        )
+        for dim in RiskDimension
+    }
+    result = Assessment(_minimal_system(evidence=all_level_1)).run()
+    assert all(r.awarded_level == MaturityLevel.INITIAL for r in result.dimension_results)
+    assert abs(result.weighted_score() - result.overall_score()) < 1e-9
+
+
+def test_weighted_score_higher_for_high_aivss_lead():
+    # ACRF-10 has the highest AIVSS score (9.5), above the cross-dim mean.
+    # When only ACRF-10 is awarded level 4 and all others are 0, the
+    # AIVSS-weighted mean must exceed the unweighted mean.
+    evidence = {
+        RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING: Evidence(
+            claimed_level=MaturityLevel.OPTIMIZED,
+            artifacts=[
+                EvidenceArtifact(control_objective=co, artifact=co)
+                for co in ["SP-1", "SP-2", "SP-3", "SP-4"]
+            ],
+        )
+    }
+    result = Assessment(_minimal_system(evidence=evidence)).run()
+    sp = result.get(RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING)
+    assert sp.awarded_level == MaturityLevel.OPTIMIZED
+    assert result.weighted_score() > result.overall_score()
+
+
+def test_weighted_score_arithmetic():
+    # Hand-calculated fixture: only ACRF-10 (AIVSS 9.5) at awarded level 4.
+    # weighted = (4 * aivss_10) / sum(all aivss scores)
+    evidence = {
+        RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING: Evidence(
+            claimed_level=MaturityLevel.OPTIMIZED,
+            artifacts=[
+                EvidenceArtifact(control_objective=co, artifact=co)
+                for co in ["SP-1", "SP-2", "SP-3", "SP-4"]
+            ],
+        )
+    }
+    result = Assessment(_minimal_system(evidence=evidence)).run()
+    aivss_10 = RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING.aivss_score
+    total_weight = sum(d.aivss_score for d in RiskDimension)
+    expected = (4 * aivss_10) / total_weight
+    assert abs(result.weighted_score() - expected) < 1e-9
