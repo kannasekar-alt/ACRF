@@ -64,7 +64,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: Agent A trusts messages from Agent B because they share a deployment, not because B authenticated or was delegated authority for the requested action.*
 
 **OWASP cross-mapping:** ASI07 Insecure Inter-Agent Communication; MCP07 Insufficient Auth.
-**AIVSS:** 9.2 (Critical).
+**AIVSS:** 9.4 (Critical).
 **Defense pattern:** Warrant delegation, mTLS, signed Agent Cards.
 
 **Control objectives:**
@@ -89,7 +89,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: agents lack cryptographically verifiable, standards-based identities distinct from the identity of the human user on whose behalf they act, making it impossible to distinguish "which agent did this" from "which user did this."*
 
 **OWASP cross-mapping:** ASI03 Identity & Privilege Failures; MCP01 Token Mismanagement.
-**AIVSS:** 9.0 (Critical).
+**AIVSS:** 8.2 (High).
 **Defense pattern:** Agent Naming Service, OAuth 2.1, scoped tokens.
 
 **Control objectives:**
@@ -114,7 +114,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: the number of MCP tool servers reachable by agents grows unchecked, expanding the attack surface and creating shadow dependencies that no one monitors.*
 
 **OWASP cross-mapping:** ASI04 Supply Chain Vulnerabilities; MCP09 Shadow MCP Servers.
-**AIVSS:** 8.4 (High).
+**AIVSS:** 7.2 (High).
 **Defense pattern:** Agent inventory, mcp-scan, AIBOM.
 
 **Control objectives:**
@@ -139,7 +139,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: an agent's persistent memory or context window is corrupted  - by another agent, a tool response, or a manipulated data source  - causing the agent to act on false premises in subsequent interactions.*
 
 **OWASP cross-mapping:** ASI06 Memory & Context Manipulation; MCP06 Intent Flow Subversion.
-**AIVSS:** 9.1 (Critical).
+**AIVSS:** 8.6 (High).
 **Defense pattern:** Namespace isolation, contextual integrity.
 
 **Control objectives:**
@@ -164,7 +164,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: a malicious or compromised tool, skill, or plugin is introduced into the agent's dependency chain  - through a package registry, a skill marketplace, or a tool-poisoning attack  - and executes with the agent's authority.*
 
 **OWASP cross-mapping:** ASI04 Supply Chain Vulnerabilities; MCP03 Tool Poisoning, MCP04 Tool Poisoning via Rug Pull.
-**AIVSS:** 9.3 (Critical).
+**AIVSS:** 9.2 (Critical).
 **Defense pattern:** Lock dependency versions, skill-scanner.
 
 **Control objectives:**
@@ -189,7 +189,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: agent configuration files are treated as inert data, but in practice they can specify tool endpoints, system prompts, allowed actions, and resource URIs  - making them execution vectors that, if modified, change agent behavior without touching code.*
 
 **OWASP cross-mapping:** ASI05 Unexpected Code Execution; MCP05 Command Injection.
-**AIVSS:** 8.7 (High).
+**AIVSS:** 7.8 (High).
 **Defense pattern:** Sandboxing, read-only configs.
 
 **Control objectives:**
@@ -214,7 +214,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: safety controls that hold on a single turn erode across multiple turns of agent interaction  - through gradual context manipulation, incremental permission escalation, or goal drift  - until the agent performs an action it would have refused in a single-turn context.*
 
 **OWASP cross-mapping:** ASI01 Goal Hijack / Prompt Injection; MCP06 Intent Flow Subversion.
-**AIVSS:** 9.4 (Critical).
+**AIVSS:** 9.6 (Critical).
 **Defense pattern:** Deterministic intermediaries, session limits.
 
 **Control objectives:**
@@ -239,7 +239,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: Agent A calls B calls C calls D; when D does something wrong, there is no practical way to reconstruct whose intent initiated the chain, which hop introduced the error, or how to stop the cascade.*
 
 **OWASP cross-mapping:** ASI08 Cascading Failures; MCP08 Lack of Audit.
-**AIVSS:** 8.5 (High).
+**AIVSS:** 7.4 (High).
 **Defense pattern:** Circuit breakers, agent-aware SIEM.
 
 **Control objectives:**
@@ -264,7 +264,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: an attacker (or a compromised agent) uses semantically valid but misleading content  - natural-language reformulations, context over-sharing, or ambiguous intent  - to cause a receiving agent to take an action that formal controls would have blocked if the request had been expressed directly.*
 
 **OWASP cross-mapping:** ASI09 Human-Agent Trust Failures; MCP10 Context Over-Sharing.
-**AIVSS:** 8.6 (High).
+**AIVSS:** 8.0 (High).
 **Defense pattern:** Guardian agents, intent validation.
 
 **Control objectives:**
@@ -289,7 +289,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 *Risk addressed: the guardrails themselves  - rate limits, authorization policies, audit pipelines  - can be disabled, reconfigured, or bypassed by the agents they are supposed to constrain, because the controls run with the same privileges or in the same trust domain as the agents.*
 
 **OWASP cross-mapping:** ASI10 Rogue Agent Behavior; MCP02 Privilege Escalation.
-**AIVSS:** 9.5 (Critical).
+**AIVSS:** 9.8 (Critical).
 **Defense pattern:** Least agency, immutable guardrails.
 
 **Control objectives:**
