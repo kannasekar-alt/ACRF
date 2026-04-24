@@ -1,4 +1,4 @@
-"""BookingExecutor Agent — PROTECTED VERSION (verifies signatures before processing)."""
+"""BookingExecutor Agent - PROTECTED VERSION (verifies signatures before processing)."""
 import base64
 import json
 import time
@@ -36,7 +36,7 @@ def verify_signature(envelope):
 
     card = trust_store.get(sender)
     if not card:
-        return False, f"Sender '{sender}' not found in trust store — no Agent Card registered"
+        return False, f"Sender '{sender}' not found in trust store - no Agent Card registered"
 
     try:
         public_key = serialization.load_pem_public_key(card["public_key_pem"].encode())
@@ -45,7 +45,7 @@ def verify_signature(envelope):
         public_key.verify(signature, canonical)
         return True, "Signature valid"
     except InvalidSignature:
-        return False, "Signature verification FAILED — message was tampered with or forged"
+        return False, "Signature verification FAILED - message was tampered with or forged"
     except Exception as e:
         return False, f"Verification error: {e}"
 
@@ -61,7 +61,7 @@ def book_flight():
             "reason": verification_msg,
             "payload": envelope.get("payload", {}),
         })
-        print(f"[BookingExecutor] REJECTED request claiming to be '{envelope.get('sender')}' — {verification_msg}")
+        print(f"[BookingExecutor] REJECTED request claiming to be '{envelope.get('sender')}' - {verification_msg}")
         payload = envelope.get("payload", {})
         print(f"[BookingExecutor] Audit log: attempted booking for '{payload.get('user')}'")
         return jsonify({"error": "signature_verification_failed", "reason": verification_msg}), 403

@@ -1,4 +1,4 @@
-"""Attacker — attempts to spoof TravelOrchestrator in the protected environment."""
+"""Attacker - attempts to spoof TravelOrchestrator in the protected environment."""
 import base64
 import time
 
@@ -22,7 +22,7 @@ def attempt_spoof_no_signature():
         },
     }
     print("[Attacker] -> BookingExecutor: Book SFO->DXB for 'Attacker', charge Alice ($8200)")
-    print("[Attacker] (No signature — hoping BookingExecutor doesn't check)")
+    print("[Attacker] (No signature - hoping BookingExecutor doesn't check)")
     response = requests.post(BOOKING_SERVICE_URL, json=malicious, timeout=10)
     print(f"[BookingExecutor] Response: {response.status_code}")
     print(f"[BookingExecutor] Reason: {response.json().get('reason', 'unknown')}")
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     time.sleep(2)
     show_final_audit()
     print("=" * 70)
-    print(" ATTACK BLOCKED — This is ACRF-01 Defense in action")
+    print(" ATTACK BLOCKED - This is ACRF-01 Defense in action")
     print("=" * 70)
     print("- Alice was NOT charged for fraudulent bookings.")
     print("- Every spoofing attempt was rejected and logged.")

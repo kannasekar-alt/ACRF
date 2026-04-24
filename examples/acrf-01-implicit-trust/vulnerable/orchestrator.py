@@ -1,4 +1,4 @@
-"""TravelOrchestrator Agent — VULNERABLE VERSION (ACRF-01 demo)"""
+"""TravelOrchestrator Agent - VULNERABLE VERSION (ACRF-01 demo)"""
 import time
 
 import requests

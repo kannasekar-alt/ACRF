@@ -1,4 +1,4 @@
-"""Key Generation Helper — Ed25519 keypairs + Agent Cards for ACRF-01 defense demo."""
+"""Key Generation Helper - Ed25519 keypairs + Agent Cards for ACRF-01 defense demo."""
 import json
 from pathlib import Path
 

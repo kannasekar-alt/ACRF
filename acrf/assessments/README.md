@@ -19,7 +19,7 @@ Pre-built YAML templates for assessing agent-to-agent communication systems agai
 cp acrf/assessments/implicit-trust.yaml my-system.yaml
 ```
 
-2. Edit the file — replace the example agents, channels, and trust boundaries with your own. Then set `claimed_level` and add your evidence artifacts.
+2. Edit the file - replace the example agents, channels, and trust boundaries with your own. Then set `claimed_level` and add your evidence artifacts.
 
 3. Run the assessment:
 
@@ -33,11 +33,11 @@ acrf assess my-system.yaml
 
 Each YAML file follows the ACRF system description schema (`specs/system-description.schema.json`) and contains:
 
-- **System metadata** — name, description, owner, assessment date.
-- **Agents** — the actors in the system with their roles and identity schemes.
-- **Channels** — how agents communicate, including transport, message format, trust boundary crossings, and actions with blast radius ratings.
-- **Trust boundaries** — logical boundaries between trust domains.
-- **Evidence** — the dimension being assessed, the claimed maturity level (0–4), and artifacts proving each control objective.
+- **System metadata** - name, description, owner, assessment date.
+- **Agents** - the actors in the system with their roles and identity schemes.
+- **Channels** - how agents communicate, including transport, message format, trust boundary crossings, and actions with blast radius ratings.
+- **Trust boundaries** - logical boundaries between trust domains.
+- **Evidence** - the dimension being assessed, the claimed maturity level (0–4), and artifacts proving each control objective.
 
 ## Control Objective Reference
 
