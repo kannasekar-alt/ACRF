@@ -1,0 +1,207 @@
+# ============================================================================
+# ACRF Assessment Template: MCP Server Sprawl (ACRF-03)
+# ============================================================================
+# Severity: High (AIVSS 8.4)
+# OWASP Refs: Agentic Top 10 - ASI04 (Supply Chain Vulnerabilities)
+#             MCP Top 10 - MCP09 (Shadow MCP Servers)
+# ============================================================================
+# This template defines a realistic scenario where MCP server proliferation
+# has outpaced governance. Developers spin up MCP servers independently,
+# creating an unmonitored attack surface that no team fully owns.
+# Use it as a starting point: describe your own servers, channels, and
+# evidence, then run acrf assess to score your system.
+# ============================================================================
+
+acrf_version: "0.1"
+
+system:
+  name: "Enterprise AI Developer Platform"
+  description: >-
+    A software engineering organisation has adopted AI coding assistants
+    and productivity agents. Individual teams have deployed MCP servers to
+    expose internal tools -- databases, CI/CD pipelines, code repositories,
+    and communication platforms -- to their agents. No central registry
+    exists. Security has no visibility into which servers are running,
+    who owns them, or what tools they expose.
+  owner: "acrf/assessment-templates"
+  assessment_date: "2026-04-25"
+
+agents:
+  - id: coding-assistant
+    name: "AI Coding Assistant"
+    role: orchestrator
+    identity_scheme: none
+    operates_on_behalf_of: developer
+
+  - id: ci-agent
+    name: "CI/CD Automation Agent"
+    role: service_agent
+    identity_scheme: none
+    operates_on_behalf_of: service
+
+  - id: data-agent
+    name: "Data Query Agent"
+    role: service_agent
+    identity_scheme: none
+    operates_on_behalf_of: service
+
+  - id: shadow-agent
+    name: "Unapproved Shadow Agent"
+    role: unknown
+    identity_scheme: none
+    operates_on_behalf_of: unattended
+
+mcp_servers:
+  - id: mcp-github
+    name: "GitHub MCP Server"
+    owner: "platform-team"
+    status: approved
+    auth: api-key
+    tools_exposed:
+      - create_pr
+      - read_code
+      - push_branch
+    blast_radius: high
+    internet_exposed: false
+
+  - id: mcp-database
+    name: "Internal Database MCP Server"
+    owner: "data-team"
+    status: approved
+    auth: api-key
+    tools_exposed:
+      - query_customers
+      - export_records
+    blast_radius: high
+    internet_exposed: false
+
+  - id: mcp-shadow-1
+    name: "Developer Laptop MCP Server"
+    owner: unknown
+    status: shadow
+    auth: none
+    tools_exposed:
+      - execute_shell
+      - read_filesystem
+    blast_radius: critical
+    internet_exposed: true
+
+  - id: mcp-shadow-2
+    name: "Unregistered Slack Integration"
+    owner: unknown
+    status: shadow
+    auth: none
+    tools_exposed:
+      - send_message
+      - read_channels
+    blast_radius: medium
+    internet_exposed: false
+
+trust_boundaries:
+  - id: tb-approved
+    name: "Approved Server Boundary"
+    description: "Boundary around centrally managed and audited MCP servers."
+  - id: tb-shadow
+    name: "Shadow Server Boundary"
+    description: "Boundary around unapproved servers with no governance oversight."
+
+channels:
+  - id: ch-assistant-github
+    sender: coding-assistant
+    receiver: mcp-github
+    transport: stdio
+    message_format: json-rpc
+    crosses_trust_boundary: false
+    synchronous: true
+    actions:
+      - name: create_pr
+        blast_radius: medium
+        reversible: true
+      - name: push_branch
+        blast_radius: medium
+        reversible: true
+
+  - id: ch-assistant-database
+    sender: coding-assistant
+    receiver: mcp-database
+    transport: https
+    message_format: json-rpc
+    crosses_trust_boundary: false
+    synchronous: true
+    actions:
+      - name: query_customers
+        blast_radius: high
+        reversible: true
+      - name: export_records
+        blast_radius: high
+        reversible: false
+
+  - id: ch-assistant-shadow-1
+    sender: coding-assistant
+    receiver: mcp-shadow-1
+    transport: stdio
+    message_format: json-rpc
+    crosses_trust_boundary: true
+    synchronous: true
+    actions:
+      - name: execute_shell
+        blast_radius: critical
+        reversible: false
+      - name: read_filesystem
+        blast_radius: high
+        reversible: true
+
+  - id: ch-assistant-shadow-2
+    sender: coding-assistant
+    receiver: mcp-shadow-2
+    transport: https
+    message_format: json-rpc
+    crosses_trust_boundary: true
+    synchronous: true
+    actions:
+      - name: send_message
+        blast_radius: medium
+        reversible: false
+
+# ============================================================================
+# Evidence: What controls exist today?
+#
+# Maturity Levels:
+#   0 - None: No inventory of MCP servers; anyone can deploy without review.
+#   1 - Initial: A central inventory exists but is manually maintained.
+#   2 - Defined: New servers require approval and security review before use.
+#   3 - Managed: Continuous drift detection flags shadow servers automatically.
+#   4 - Optimized: AIBOM generated and published; full supply chain visibility.
+#
+# Control Objectives:
+#   SS-1  A maintained inventory of all agent-reachable MCP servers exists.
+#   SS-2  New MCP servers require approval and security review before use.
+#   SS-3  Continuous monitoring detects shadow servers and flags drift.
+#   SS-4  An AI Bill of Materials (AIBOM) is generated and published.
+# ============================================================================
+
+evidence:
+  mcp_server_sprawl:
+    claimed_level: 0
+    artifacts: []
+    # -----------------------------------------------------------------------
+    # This template intentionally starts at Level 0 to show a worst-case
+    # baseline. To use it for your own system:
+    #
+    # 1. Set claimed_level to the level you believe you have reached.
+    # 2. Add artifacts proving each control objective. Example:
+    #
+    #   artifacts:
+    #     - control_objective: SS-1
+    #       artifact: "inventory/mcp-servers.yaml"
+    #       description: "Centralised registry of all approved MCP servers."
+    #     - control_objective: SS-2
+    #       artifact: "process/mcp-approval-workflow.md"
+    #       description: "Security review required before any new MCP server."
+    #     - control_objective: SS-3
+    #       artifact: "monitoring/mcp-scan-results.json"
+    #       description: "Weekly mcp-scan output showing drift detection."
+    #     - control_objective: SS-4
+    #       artifact: "aibom/mcp-bill-of-materials.json"
+    #       description: "AI Bill of Materials covering all agent-reachable endpoints."
+    # -----------------------------------------------------------------------
