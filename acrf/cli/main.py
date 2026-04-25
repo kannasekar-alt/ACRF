@@ -16,7 +16,7 @@ from acrf.core.loader import SystemDescriptionError, load_system
 from acrf.core.report import render
 
 # Path to the bundled JSON Schema, relative to this file.
-_SCHEMA_PATH = Path(__file__).parent.parent.parent / "specs" / "system-description.schema.json"
+_SCHEMA_PATH = Path(__file__).parent.parent / "data" / "system-description.schema.json"
 
 
 def main(argv: list[str] | None = None) -> int:
