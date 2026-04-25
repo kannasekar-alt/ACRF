@@ -11,7 +11,7 @@ This is ACRF-01 - Implicit Trust Between Agents. The highest-severity risk in ou
 
 Most multi-agent systems today have this vulnerability by default. When Agent A sends a message to Agent B, Agent B trusts the sender field in the JSON. No signature. No cryptographic proof. Just words in a message.
 
-I'm going to show you what that looks like when it fails, and what the defense looks like in running code. Under 60 seconds each."
+"I'm going to show you what that looks like when it fails, and what the defense looks like in running code. Under 60 seconds each."
 
 ## Part 1 - The Attack (2 minutes)
 
@@ -81,5 +81,5 @@ Neither MCP nor A2A mandates message signing. They allow it. They support it. Bu
 
 If you have one takeaway: treat the sender field on any inter-agent message as untrusted input until a signature proves otherwise. That single discipline closes ACRF-01.
 
-Repo is at github.com/kannasekar-alt/acrf. The full framework documents nine more risks like this one.
+Repo is at github.com/kannasekar-alt/acrf. The full framework documents nine more risks like this one."
 
