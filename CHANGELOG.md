@@ -25,16 +25,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - **Methodology v0.1.** Ten risk dimensions for agent-to-agent communication security, each cross-mapped to OWASP Agentic Top 10 (ASI) and OWASP MCP Top 10, scored with AIVSS (AI Vulnerability Severity Scoring), and paired with a concrete defense pattern:
-  - ACRF-01: Implicit Trust Between Agents (Critical, 9.2)
-  - ACRF-02: No Standard Agent Identity (Critical, 9.0)
-  - ACRF-03: MCP Server Sprawl (High, 8.4)
-  - ACRF-04: Memory Poisoning (Critical, 9.1)
-  - ACRF-05: Supply Chain Toxicity (Critical, 9.3)
-  - ACRF-06: Config Files = Execution Vectors (High, 8.7)
-  - ACRF-07: Multi-Turn Defense Collapse (Critical, 9.4)
-  - ACRF-08: Cascading Failure Blindness (High, 8.5)
-  - ACRF-09: Semantic Bypass (High, 8.6)
-  - ACRF-10: Safety Controls Not Self-Protecting (Critical, 9.5)
+  - ACRF-01: Implicit Trust Between Agents (Critical, 9.4)
+  - ACRF-02: No Standard Agent Identity (High, 8.2)
+  - ACRF-03: MCP Server Sprawl (High, 7.2)
+  - ACRF-04: Memory Poisoning (High, 8.6)
+  - ACRF-05: Supply Chain Toxicity (Critical, 9.2)
+  - ACRF-06: Config Files = Execution Vectors (High, 7.8)
+  - ACRF-07: Multi-Turn Defense Collapse (Critical, 9.6)
+  - ACRF-08: Cascading Failure Blindness (High, 7.4)
+  - ACRF-09: Semantic Bypass (High, 8.0)
+  - ACRF-10: Safety Controls Not Self-Protecting (Critical, 9.8)
 - **Reference tool v0.1.0.** Python package with CLI (`acrf validate`, `acrf assess`, `acrf report`) and programmatic API (`Assessment`, `load_system`).
 - **System description schema** (JSON Schema, draft 2020-12) for machine-readable system descriptions.
 - **Examples**  - `travel-booking-agents.yaml`, `trading-research-agents.yaml`, `prior-auth-agents.yaml`, `minimal-two-agent.yaml`, plus a generated sample report.

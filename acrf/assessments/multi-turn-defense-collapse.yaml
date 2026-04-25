@@ -2,8 +2,8 @@
 # ACRF Assessment Template: Multi-Turn Defense Collapse (ACRF-07)
 # ============================================================================
 # Severity: Critical (AIVSS 9.6)
-# OWASP Refs: Agentic Top 10 - A02 (Agent Prompt Injection / Manipulation)
-#             MCP Top 10 - M06 (Indirect Prompt Injection via Tool Results)
+# OWASP Refs: Agentic Top 10 - ASI01 (Goal Hijack)
+#             MCP Top 10 - MCP06 (Intent Flow Subversion)
 # ============================================================================
 # This template models a conversational agent system where safety guardrails
 # are applied per-turn but erode across a multi-turn interaction. An attacker

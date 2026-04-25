@@ -2,8 +2,8 @@
 # ACRF Assessment Template: Implicit Trust Between Agents (ACRF-01)
 # ============================================================================
 # Severity: Critical (AIVSS 9.4)
-# OWASP Refs: Agentic Top 10 - A01 (Agent Authorization & Control)
-#             MCP Top 10 - M01 (Tool Poisoning)
+# OWASP Refs: Agentic Top 10 - ASI07 (Insecure Inter-Agent Communication)
+#             MCP Top 10 - MCP07 (Insufficient Auth)
 # ============================================================================
 # This template defines a realistic multi-agent scenario where implicit trust
 # is the primary risk. Use it as a starting point: describe your own agents,

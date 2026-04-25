@@ -3,7 +3,7 @@
 A runnable demonstration of the highest-severity risk in the ACRF framework - with a working defense.
 
 **ACRF Risk:** 01
-**AIVSS Severity:** Critical (9.2)
+**AIVSS Severity:** Critical (9.4)
 **OWASP Agentic:** ASI07 Insecure Inter-Agent Communication
 **OWASP MCP:** MCP07 Insufficient Auth
 
