@@ -14,11 +14,10 @@ import sqlite3
 import uuid
 from contextlib import contextmanager
 from contextvars import ContextVar
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-
 
 # Context variable that tracks the current trace ID.
 # When Agent A is running, this is set to A's trace_id.

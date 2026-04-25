@@ -8,7 +8,7 @@ Commands:
 """
 
 import sys
-from datetime import timezone
+
 from acrf_trace.store import SQLiteTraceStore
 
 
@@ -78,10 +78,10 @@ def cmd_report(db_path: str = "acrf_trace.db") -> None:
     print(f"  CF-2 Causal chain links:     {parent_status} {parent_pct:.0f}% of traces reference a parent")
 
     # CF-3 integrity
-    print(f"  CF-3 Log integrity hashes:   ✗ Not yet implemented (planned v0.2)")
+    print("  CF-3 Log integrity hashes:   ✗ Not yet implemented (planned v0.2)")
 
     # CF-1 circuit breakers
-    print(f"  CF-1 Circuit breakers:       ⚠ Cannot verify from traces alone")
+    print("  CF-1 Circuit breakers:       ⚠ Cannot verify from traces alone")
 
     print()
 
