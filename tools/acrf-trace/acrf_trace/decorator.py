@@ -8,10 +8,11 @@ When Agent A calls Agent B (both wrapped), B's trace automatically
 records A's trace_id as its parent_trace_id. No extra code needed.
 """
 
+from collections.abc import Callable
 from functools import wraps
-from typing import Callable, Any
+from typing import Any
 
-from acrf_trace.store import get_store, get_current_trace_id, set_current_trace_id
+from acrf_trace.store import get_current_trace_id, get_store, set_current_trace_id
 
 
 def wrap(agent_name: str) -> Callable:
@@ -47,13 +48,14 @@ def wrap(agent_name: str) -> Callable:
             # so we have the trace_id ready to set in context.
             import uuid
             from datetime import datetime, timezone
+
             from acrf_trace.store import Trace
 
             trace_id = str(uuid.uuid4())
 
             # Set MY trace_id as the current context.
             # Any wrapped agents I call will see this as their parent.
-            token = set_current_trace_id(trace_id)
+            set_current_trace_id(trace_id)
 
             try:
                 output_data = func(*args, **kwargs)
@@ -63,7 +65,6 @@ def wrap(agent_name: str) -> Callable:
                 set_current_trace_id(parent_trace_id)
 
             # Now record the completed trace with full input/output.
-            from datetime import datetime, timezone
             trace = Trace(
                 trace_id=trace_id,
                 agent_name=agent_name,
@@ -76,8 +77,8 @@ def wrap(agent_name: str) -> Callable:
 
             # For SQLite store, use the record method but with our pre-built trace_id
             if not hasattr(store, '_traces'):
-                import json, sqlite3
-                from pathlib import Path
+                import json
+                import sqlite3
                 with sqlite3.connect(store.db_path, isolation_level=None) as conn:
                     conn.execute(
                         "INSERT INTO traces VALUES (?, ?, ?, ?, ?, ?)",

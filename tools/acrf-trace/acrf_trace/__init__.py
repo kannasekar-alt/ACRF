@@ -15,7 +15,7 @@ Quickstart:
 """
 
 from acrf_trace.decorator import wrap
-from acrf_trace.store import get_store, set_store, TraceStore, SQLiteTraceStore, Trace
+from acrf_trace.store import SQLiteTraceStore, Trace, TraceStore, get_store, set_store
 
 __version__ = "0.1.0"
 __all__ = [
