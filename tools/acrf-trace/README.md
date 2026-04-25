@@ -4,6 +4,7 @@ A causal trace tool for AI agent communication.
 Implements the ACRF-08 (Cascading Failure Blindness) defense pattern.
 
 Part of the ACRF framework: https://github.com/kannasekar-alt/ACRF
+PyPI: https://pypi.org/project/acrf-trace/
 Presented at RSA Conference 2026.
 
 ---
