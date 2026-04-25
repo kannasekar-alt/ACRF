@@ -46,16 +46,16 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 
 | # | Risk Dimension | OWASP Agentic | OWASP MCP | AIVSS | Defense Pattern |
 |---|----------------|---------------|-----------|-------|-----------------|
-| 01 | **Implicit Trust Between Agents** | ASI07 Insecure Inter-Agent | MCP07 Insufficient Auth | Critical (9.2) | Warrant delegation, mTLS, signed Agent Cards |
-| 02 | **No Standard Agent Identity** | ASI03 Identity & Privilege | MCP01 Token Mismanagement | Critical (9.0) | Agent Naming Service, OAuth 2.1, scoped tokens |
-| 03 | **MCP Server Sprawl** | ASI04 Supply Chain Vulns | MCP09 Shadow MCP Servers | High (8.4) | Agent inventory, mcp-scan, AIBOM |
-| 04 | **Memory Poisoning** | ASI06 Memory & Context | MCP06 Intent Flow Subversion | Critical (9.1) | Namespace isolation, contextual integrity |
-| 05 | **Supply Chain Toxicity** | ASI04 Supply Chain Vulns | MCP03, MCP04 Tool Poisoning | Critical (9.3) | Lock dependency versions, skill-scanner |
-| 06 | **Config Files = Execution Vectors** | ASI05 Unexpected Code Exec | MCP05 Command Injection | High (8.7) | Sandboxing, read-only configs |
-| 07 | **Multi-Turn Defense Collapse** | ASI01 Goal Hijack | MCP06 Intent Flow Subversion | Critical (9.4) | Deterministic intermediaries, session limits |
-| 08 | **Cascading Failure Blindness** | ASI08 Cascading Failures | MCP08 Lack of Audit | High (8.5) | Circuit breakers, agent-aware SIEM |
-| 09 | **Semantic Bypass** | ASI09 Human-Agent Trust | MCP10 Context Over-Sharing | High (8.6) | Guardian agents, intent validation |
-| 10 | **Safety Controls Not Self-Protecting** | ASI10 Rogue Agents | MCP02 Privilege Escalation | Critical (9.5) | Least agency, immutable guardrails |
+| 01 | **Implicit Trust Between Agents** | ASI07 Insecure Inter-Agent | MCP07 Insufficient Auth | Critical (9.4) | Warrant delegation, mTLS, signed Agent Cards |
+| 02 | **No Standard Agent Identity** | ASI03 Identity & Privilege | MCP01 Token Mismanagement | High (8.2) | Agent Naming Service, OAuth 2.1, scoped tokens |
+| 03 | **MCP Server Sprawl** | ASI04 Supply Chain Vulns | MCP09 Shadow MCP Servers | High (7.2) | Agent inventory, mcp-scan, AIBOM |
+| 04 | **Memory Poisoning** | ASI06 Memory & Context | MCP06 Intent Flow Subversion | High (8.6) | Namespace isolation, contextual integrity |
+| 05 | **Supply Chain Toxicity** | ASI04 Supply Chain Vulns | MCP03, MCP04 Tool Poisoning | Critical (9.2) | Lock dependency versions, skill-scanner |
+| 06 | **Config Files = Execution Vectors** | ASI05 Unexpected Code Exec | MCP05 Command Injection | High (7.8) | Sandboxing, read-only configs |
+| 07 | **Multi-Turn Defense Collapse** | ASI01 Goal Hijack | MCP06 Intent Flow Subversion | Critical (9.6) | Deterministic intermediaries, session limits |
+| 08 | **Cascading Failure Blindness** | ASI08 Cascading Failures | MCP08 Lack of Audit | High (7.4) | Circuit breakers, agent-aware SIEM |
+| 09 | **Semantic Bypass** | ASI09 Human-Agent Trust | MCP10 Context Over-Sharing | High (8.0) | Guardian agents, intent validation |
+| 10 | **Safety Controls Not Self-Protecting** | ASI10 Rogue Agents | MCP02 Privilege Escalation | Critical (9.8) | Least agency, immutable guardrails |
 
 *AIVSS scores reflect worst-case severity in a fully autonomous, multi-agent deployment where agents make consequential real-world decisions without human-in-the-loop review. Scores should be contextualized to the specific system under assessment.*
 
@@ -69,7 +69,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 
 **Control objectives:**
 
-- **IT-1.** Every inter-agent message carries verifiable proof that the sender is who it claims to be  - authentication is verified on receipt, not assumed from network position or co-deployment.
+- **IT-1.** Every inter-agent message carries verifiable proof that the sender is who it claims to be - authentication is verified on receipt, not assumed from network position or co-deployment.
 - **IT-2.** Trust delegation is explicit: when Agent A asks Agent B to act, the scope of delegated authority is stated in the request and enforced by the receiver.
 - **IT-3.** Trust delegation credentials are time-limited and rotatable; compromised credentials can be revoked without redeploying either agent.
 - **IT-4.** The system can produce a verifiable audit trail showing, for any action, the complete delegation chain from the originating human (or policy) through every agent hop.
@@ -84,7 +84,7 @@ ACRF organizes A2A communication risk into ten dimensions. Each dimension is def
 | 3 | Delegation credentials are rotatable and revocable (IT-1, IT-2, IT-3). |
 | 4 | Full delegation-chain audit trail is verifiable end-to-end (IT-1 through IT-4). |
 
-### 3.2 ACRF-02  - No Standard Agent Identity
+### 3.2 ACRF-02 - No Standard Agent Identity
 
 *Risk addressed: agents lack cryptographically verifiable, standards-based identities distinct from the identity of the human user on whose behalf they act, making it impossible to distinguish "which agent did this" from "which user did this."*
 
@@ -338,7 +338,7 @@ The severity bands are:
 | 4.0 – 6.9 | Medium |
 | 0.0 – 3.9 | Low |
 
-Six of the ten ACRF dimensions score Critical; four score High. No dimension scores below High because ACRF specifically targets the inter-agent communication layer, which is only relevant in systems with meaningful autonomy.
+Four of the ten ACRF dimensions score Critical; six score High. No dimension scores below High because ACRF specifically targets the inter-agent communication layer, which is only relevant in systems with meaningful autonomy.
 
 ## 6. Governance of the methodology
 

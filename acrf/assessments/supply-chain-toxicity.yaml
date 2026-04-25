@@ -2,8 +2,8 @@
 # ACRF Assessment Template: Supply Chain Toxicity (ACRF-05)
 # ============================================================================
 # Severity: Critical (AIVSS 9.2)
-# OWASP Refs: Agentic Top 10 - A05 (Insecure Agent-to-Agent Communication)
-#             MCP Top 10 - M03 (Tool Tampering / Server Spoofing)
+# OWASP Refs: Agentic Top 10 - ASI04 (Supply Chain Vulnerabilities)
+#             MCP Top 10 - MCP03, MCP04 (Tool Poisoning)
 # ============================================================================
 # This template models an agent system that relies on external MCP servers,
 # third-party tool registries, and community plugins - the modern equivalent

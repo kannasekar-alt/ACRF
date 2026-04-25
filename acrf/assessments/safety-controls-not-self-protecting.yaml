@@ -2,8 +2,8 @@
 # ACRF Assessment Template: Safety Controls Not Self-Protecting (ACRF-10)
 # ============================================================================
 # Severity: Critical (AIVSS 9.8) - Highest in the framework
-# OWASP Refs: Agentic Top 10 - A09 (Lack of Guardrails on Agent Actions)
-#             MCP Top 10 - M09 (Lack of Monitoring & Logging)
+# OWASP Refs: Agentic Top 10 - ASI10 (Rogue Agent Behavior)
+#             MCP Top 10 - MCP02 (Privilege Escalation)
 # ============================================================================
 # This template models a system where the safety and compliance layer itself
 # can be bypassed, disabled, or manipulated by the agents it is meant to

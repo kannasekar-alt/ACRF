@@ -288,7 +288,7 @@ def test_weighted_score_higher_for_high_aivss_lead():
 
 
 def test_weighted_score_arithmetic():
-    # Hand-calculated fixture: only ACRF-10 (AIVSS 9.5) at awarded level 4.
+    # Hand-calculated fixture: only ACRF-10 (AIVSS 9.8) at awarded level 4.
     # weighted = (4 * aivss_10) / sum(all aivss scores)
     evidence = {
         RiskDimension.SAFETY_CONTROLS_NOT_SELF_PROTECTING: Evidence(
