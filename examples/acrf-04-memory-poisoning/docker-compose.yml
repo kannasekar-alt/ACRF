@@ -1,0 +1,53 @@
+services:
+
+  vulnerable-agent:
+    build: ./vulnerable
+    container_name: access-agent
+    command: python -u agent.py
+    profiles: ["vulnerable"]
+    volumes:
+      - vulnerable-memory:/app
+    networks:
+      - acrf-demo
+
+  vulnerable-attacker:
+    build: ./vulnerable
+    container_name: attacker
+    command: python -u attacker.py
+    depends_on:
+      - vulnerable-agent
+    profiles: ["vulnerable"]
+    volumes:
+      - vulnerable-memory:/app
+    networks:
+      - acrf-demo
+
+  protected-agent:
+    build: ./protected
+    container_name: access-agent
+    command: python -u agent.py
+    profiles: ["protected"]
+    volumes:
+      - protected-memory:/app
+    networks:
+      - acrf-demo
+
+  protected-attacker:
+    build: ./protected
+    container_name: attacker
+    command: python -u attacker.py
+    depends_on:
+      - protected-agent
+    profiles: ["protected"]
+    volumes:
+      - protected-memory:/app
+    networks:
+      - acrf-demo
+
+networks:
+  acrf-demo:
+    driver: bridge
+
+volumes:
+  vulnerable-memory:
+  protected-memory:
