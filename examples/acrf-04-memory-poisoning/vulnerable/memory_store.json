@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "user_id": "john.smith",
+      "name": "John Smith",
+      "role": "Junior Developer",
+      "access_level": "read-only",
+      "allowed_systems": [
+        "dev-environment"
+      ],
+      "approved_by": "manager@company.com",
+      "last_reviewed": "2026-01-15"
+    },
+    {
+      "user_id": "alice.jones",
+      "name": "Alice Jones",
+      "role": "Senior Engineer",
+      "access_level": "read-write",
+      "allowed_systems": [
+        "dev-environment",
+        "staging"
+      ],
+      "approved_by": "manager@company.com",
+      "last_reviewed": "2026-02-01"
+    },
+    {
+      "user_id": "bob.admin",
+      "name": "Bob Admin",
+      "role": "System Administrator",
+      "access_level": "full-access",
+      "allowed_systems": [
+        "dev-environment",
+        "staging",
+        "production"
+      ],
+      "approved_by": "ciso@company.com",
+      "last_reviewed": "2026-03-01"
+    }
+  ]
+}
