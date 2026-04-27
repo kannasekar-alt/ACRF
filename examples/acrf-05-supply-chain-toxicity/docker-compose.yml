@@ -1,0 +1,59 @@
+services:
+
+  vulnerable-registry:
+    build: ./vulnerable
+    container_name: registry
+    command: python -u registry.py
+    profiles: ["vulnerable"]
+    networks:
+      - acrf-demo
+
+  vulnerable-skill:
+    build: ./vulnerable
+    container_name: malicious-skill
+    command: python -u malicious_skill.py
+    profiles: ["vulnerable"]
+    networks:
+      - acrf-demo
+
+  vulnerable-agent:
+    build: ./vulnerable
+    container_name: dev-agent
+    command: python -u agent.py
+    depends_on:
+      - vulnerable-registry
+      - vulnerable-skill
+    profiles: ["vulnerable"]
+    networks:
+      - acrf-demo
+
+  protected-registry:
+    build: ./protected
+    container_name: registry
+    command: python -u registry.py
+    profiles: ["protected"]
+    networks:
+      - acrf-demo
+
+  protected-skill:
+    build: ./protected
+    container_name: malicious-skill
+    command: python -u malicious_skill.py
+    profiles: ["protected"]
+    networks:
+      - acrf-demo
+
+  protected-agent:
+    build: ./protected
+    container_name: dev-agent
+    command: python -u agent.py
+    depends_on:
+      - protected-registry
+      - protected-skill
+    profiles: ["protected"]
+    networks:
+      - acrf-demo
+
+networks:
+  acrf-demo:
+    driver: bridge
