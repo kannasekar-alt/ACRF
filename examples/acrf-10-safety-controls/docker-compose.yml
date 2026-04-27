@@ -1,0 +1,41 @@
+services:
+
+  vulnerable-safety-api:
+    build: ./vulnerable
+    container_name: safety-api
+    command: python -u safety_api.py
+    profiles: ["vulnerable"]
+    networks:
+      - acrf-demo
+
+  vulnerable-attacker:
+    build: ./vulnerable
+    container_name: attacker
+    command: python -u attacker.py
+    depends_on:
+      - vulnerable-safety-api
+    profiles: ["vulnerable"]
+    networks:
+      - acrf-demo
+
+  protected-safety-api:
+    build: ./protected
+    container_name: safety-api
+    command: python -u safety_api.py
+    profiles: ["protected"]
+    networks:
+      - acrf-demo
+
+  protected-attacker:
+    build: ./protected
+    container_name: attacker
+    command: python -u attacker.py
+    depends_on:
+      - protected-safety-api
+    profiles: ["protected"]
+    networks:
+      - acrf-demo
+
+networks:
+  acrf-demo:
+    driver: bridge
