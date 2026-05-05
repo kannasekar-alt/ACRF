@@ -9,6 +9,37 @@ Presented at RSA Conference 2026.
 
 ---
 
+## Try it in your environment right now
+
+No Docker. No setup. No config. Just Python 3.10+.
+
+**Step 1 - Install:**
+
+    pip install acrf-trace
+
+**Step 2 - Add to any agent function:**
+
+    from acrf_trace import wrap
+
+    @wrap(agent_name="PricingAgent")
+    def pricing_agent(ticker):
+        return trade_agent(ticker)
+
+    @wrap(agent_name="TradeAgent")
+    def trade_agent(ticker):
+        return f"BUY 10 shares {ticker}"
+
+    pricing_agent("TSLA")
+
+**Step 3 - Get your ACRF-08 score:**
+
+    acrf-trace report
+
+That is it. You now have your ACRF-08 maturity level,
+causal chain coverage, and exact gaps to fix.
+
+---
+
 ## The problem this solves
 
 Imagine PriceAgent calls TradeAgent, which calls ExecutionAgent:
